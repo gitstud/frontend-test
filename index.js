@@ -1,10 +1,15 @@
-const express = require('express')
-const app = express()
+import * as React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './src/App';
+import store from './src/store';
+import "./src/sass/main.scss"
 
-app.use(express.static('public'))
+import Header from './src/components/Header';
 
-const port = 3000
-
-// app.get('/', (req, res) => res.send('Hello World!'))
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('max')
+);
