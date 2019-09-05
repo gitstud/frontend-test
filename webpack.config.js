@@ -1,5 +1,5 @@
 const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -21,6 +21,7 @@ module.exports = {
                 }
             }
         },
+        // minimize js and css
         minimizer: [
             new TerserPlugin({
                 parallel: true,
@@ -35,6 +36,7 @@ module.exports = {
             })
         ]
     },
+    // hot reload source code
     devServer: {
         hot: true,
         compress: true,
@@ -47,6 +49,10 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist/js')
     },
+    // clean the dist folder on each build
+    // Prevent duplicate css chunks
+    // hot reload
+    // template our html file
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
@@ -58,6 +64,7 @@ module.exports = {
             template: './index.html'
         })
     ],
+    // transform scss and js (babel config is in package.json)
     module: {
         rules: [
             {
@@ -78,6 +85,6 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.css']
+        extensions: ['.js', '.scss']
     }
 }
