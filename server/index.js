@@ -6,10 +6,12 @@ const cors = require('cors');
 const createListingQuery = require("./queries");
 
 let custPath = path.join(__dirname, "../");
-const envConfig = require("dotenv").config({ path: custPath + "/.env" });
+if (process.env.NODE_ENV !== 'production') {
+  const envConfig = require("dotenv").config({ path: custPath + "/.env" });
 
-if (envConfig.error) {
-  throw envConfig.error;
+  if (envConfig.error) {
+    throw envConfig.error;
+  }
 }
 
 const app = express()
