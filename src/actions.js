@@ -1,6 +1,11 @@
 import Axios from "axios";
 import produce from "immer";
 
+const API_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:9081/listings"
+    : "https://gentle-gorge-18432.herokuapp.com/listings";
+
 export const CHECK_ITEM = 'CHECK_ITEM';
 export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 export const UPDATE_RESULTS = 'UPDATE_RESULTS';
@@ -53,10 +58,11 @@ export const checkItem = (item) => async (dispatch, getState) => {
 
     const queryParts = makeQuery(newFilters);
 
-    const { data: { search } } = await Axios.post(
-      "http://localhost:9081/listings",
-      makeQuery(newFilters)
-    ).catch(err => console.log(err));
+    const {
+      data: { search }
+    } = await Axios.post(API_URL, makeQuery(newFilters)).catch(err =>
+      console.log(err)
+    );
 
     dispatch({
       type: UPDATE_RESULTS,
@@ -75,9 +81,7 @@ export const clearFilters = () => async (dispatch) => {
     } else {
       const {
         data: { search }
-      } = await Axios.post("http://localhost:9081/listings").catch(err =>
-        console.log(err)
-      );
+      } = await Axios.post(API_URL).catch(err => console.log(err));
       await localStorage.setItem("listings", JSON.stringify(search.business));
       dispatch({
         type: UPDATE_RESULTS,
@@ -96,9 +100,7 @@ export const getInitialListings = async ({ dispatch }) => {
   } else {
     const {
       data: { search }
-    } = await Axios.post("http://localhost:9081/listings").catch(err =>
-      console.log(err)
-    );
+    } = await Axios.post(API_URL).catch(err => console.log(err));
     await localStorage.setItem('listings', JSON.stringify(search.business));
     dispatch({
       type: UPDATE_RESULTS,
