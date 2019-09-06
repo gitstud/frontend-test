@@ -8,7 +8,8 @@
     "start": "npm-run-all -p -r prodStart server",
     "prodStart": "webpack --mode production",
     "devStart": "webpack --mode development",
-    "server": "node ./server/index.js"
+    "server": "node ./server/index.js",
+    "postinstall": "cd server && yarn"
   },
   "dependencies": {
     "axios": "^0.19.0",
