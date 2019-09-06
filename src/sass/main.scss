@@ -64,6 +64,7 @@ body {
     align-items: center;
     justify-content: center;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .clearbutton_text {
@@ -202,6 +203,8 @@ body {
     padding: 15px;
     text-decoration: none;
     width: 100%;
+    border: 1px solid grey;
+    background-color: #ffffff;
 }
 
 .dropdown_listitem {

@@ -8,7 +8,7 @@ const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './index.js'
+        app: ['./index.js']
     },
     optimization: {
         splitChunks: {
