@@ -20,7 +20,7 @@ app.use(cors());
 
 const jsonParser = bodyParser.json();
 
-const port = 9081
+const port = process.env.PORT
 app.get('/*', (req, res, next) => {
   console.log(req.url);
   if (req.url === '/listings' || req.url.includes('static')) {
