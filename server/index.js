@@ -4,6 +4,12 @@ const Axios = require('axios');
 const bodyParser = require('body-parser');
 const createListingQuery = require("./queries");
 
+const envConfig = require("dotenv").config();
+
+if (envConfig.error) {
+  throw envConfig.error;
+}
+
 const app = express()
 
 const jsonParser = bodyParser.json();
@@ -28,10 +34,10 @@ app.get('/maxwell', jsonParser, async (req, res) => {
           method: "POST",
           url: "https://api.yelp.com/v3/graphql",
           headers: {
-            Authorization: `Bearer ${YELP_API_KEY}`,
+            Authorization: `Bearer ${(process.env.YELP_API_KEY)}`,
             "Content-Type": "application/graphql"
           },
-          data: query,
+          data: query
         });
         console.log(result.data.data);
         res.status(200).send({ success: true, data: result.data.data });
