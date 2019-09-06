@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const createListingQuery = require("./queries");
 
-const envConfig = require("dotenv").config();
+const envConfig = require("dotenv").config({ path: __dirname + "/../.env" });
 
 if (envConfig.error) {
   throw envConfig.error;
