@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const createListingQuery = require("./queries");
 
-const envConfig = require("dotenv").config({ path: __dirname + "/../.env" });
+let custPath = path.join(__dirname, "../");
+const envConfig = require("dotenv").config({ path: custPath + "/.env" });
 
 if (envConfig.error) {
   throw envConfig.error;
@@ -18,8 +19,6 @@ app.use(cors());
 const jsonParser = bodyParser.json();
 
 const port = 9081
-
-let custPath = path.join(__dirname, '../');
 app.get('/*', (req, res, next) => {
   console.log(req.url);
   if (req.url === '/listings' || req.url.includes('static')) {
