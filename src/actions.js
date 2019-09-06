@@ -51,17 +51,56 @@ export const checkItem = (item) => async (dispatch, getState) => {
       payload: newFilters
     });
     const queryParts = makeQuery(newFilters);
-    const response = await Axios.post(
-      "http://localhost:9081/maxwell",
+    const { data: { search } } = await Axios.post(
+      "http://localhost:9081/listings",
       makeQuery(newFilters)
     ).catch(err => console.log(err));
-    console.log(response);
+    console.log(search);
     dispatch({
-        type: UPDATE_RESULTS,
-        payload: response.data,
+      type: UPDATE_RESULTS,
+      payload: search.business
     });
 };
 
-export const clearFilters = () => dispatch => {
+export const clearFilters = () => async (dispatch) => {
     dispatch({ type: CLEAR_FILTERS });
+    const listings = await localStorage.getItem("listings");
+    if (listings) {
+      dispatch({
+        type: UPDATE_RESULTS,
+        payload: JSON.parse(listings)
+      });
+    } else {
+      const {
+        data: { search }
+      } = await Axios.post("http://localhost:9081/listings").catch(err =>
+        console.log(err)
+      );
+      await localStorage.setItem("listings", JSON.stringify(search.business));
+      dispatch({
+        type: UPDATE_RESULTS,
+        payload: search.business
+      });
+    }
 };
+
+export const getInitialListings = async ({ dispatch }) => {
+  const listings = await localStorage.getItem('listings');
+  if (listings) {
+    dispatch({
+      type: UPDATE_RESULTS,
+      payload: JSON.parse(listings)
+    });
+  } else {
+    const {
+      data: { search }
+    } = await Axios.post("http://localhost:9081/listings").catch(err =>
+      console.log(err)
+    );
+    await localStorage.setItem('listings', JSON.stringify(search.business));
+    dispatch({
+      type: UPDATE_RESULTS,
+      payload: search.business
+    });
+  }
+}

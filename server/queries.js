@@ -16,10 +16,11 @@ const createListingQuery = ({
                 id
                 name
                 price
-                id
-                alias
                 rating
-                url
+                photos
+                categories {
+                    title
+                }
                 hours {
                     is_open_now
                 }

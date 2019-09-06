@@ -2,11 +2,12 @@ import { createStore, applyMiddleware } from 'redux';
 // using thunk to handle async actions
 import thunk from 'redux-thunk';
 import produce from 'immer';
-import { CHECK_ITEM, CLEAR_FILTERS } from "./actions";
+import { CHECK_ITEM, CLEAR_FILTERS, UPDATE_RESULTS, getInitialListings } from "./actions";
 
 const initialState = {
   listings: [],
   filters: {},
+  limit: 8,
 };
 
 const rootReducer = (state = initialState, action) => produce(state, draft => {
@@ -17,11 +18,19 @@ const rootReducer = (state = initialState, action) => produce(state, draft => {
         case CLEAR_FILTERS:
             draft.filters = {};
             break;
+        case UPDATE_RESULTS:
+            draft.listings = action.payload;
+            break;
     }
 });
 
-export default createStore(
+const store =  createStore(
     rootReducer,
     initialState,
     applyMiddleware(thunk)
 );
+
+getInitialListings(store);
+
+export default store;
+
