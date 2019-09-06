@@ -51,6 +51,7 @@ export const checkItem = (item) => async (dispatch, getState) => {
       payload: newFilters
     });
     const queryParts = makeQuery(newFilters);
+    console.log(queryParts);
     const { data: { search } } = await Axios.post(
       "http://localhost:9081/listings",
       makeQuery(newFilters)
@@ -58,7 +59,7 @@ export const checkItem = (item) => async (dispatch, getState) => {
     console.log(search);
     dispatch({
       type: UPDATE_RESULTS,
-      payload: search.business
+      payload: search.business,
     });
 };
 

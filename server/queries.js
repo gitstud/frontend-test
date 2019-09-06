@@ -9,7 +9,8 @@ const createListingQuery = ({
             location: "las vegas",
             offset: ${offset},
             price: "${price}",
-            categories: "${category}"
+            categories: "${category}",
+            open_now: ${openNow}
         ) {
             total
             business {

@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const Axios = require('axios');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const createListingQuery = require("./queries");
 
 const envConfig = require("dotenv").config();
@@ -11,6 +12,8 @@ if (envConfig.error) {
 }
 
 const app = express()
+
+app.use(cors());
 
 const jsonParser = bodyParser.json();
 

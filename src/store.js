@@ -7,6 +7,7 @@ import { CHECK_ITEM, CLEAR_FILTERS, UPDATE_RESULTS, getInitialListings } from ".
 const initialState = {
   listings: [],
   filters: {},
+  query: {},
   limit: 8,
 };
 
@@ -19,6 +20,7 @@ const rootReducer = (state = initialState, action) => produce(state, draft => {
             draft.filters = {};
             break;
         case UPDATE_RESULTS:
+            console.log(action.payload);
             draft.listings = action.payload;
             break;
     }

@@ -4,9 +4,9 @@ import GridItem from './GridItem';
 
 const Grid = ({ listings, limit }) => (
     <div className="grid">
-        {listings.slice(0, limit).map(listing => (
+        {listings.slice(0, limit).map((listing, i) => (
             <div className="grid_item" key={listing.id}>
-                <GridItem listing={listing} />
+                <GridItem listing={listing} index={i} />
             </div>
         ))}
     </div>
