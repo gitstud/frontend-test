@@ -19,6 +19,7 @@ class DropDownMenu extends React.Component {
     render() {
         const { listItems = [], menuTitle = '' } = this.props;
         const { isOpen } = this.state;
+
         return (
             <div className="dropdown_wrapper">
                 <div className="dropdown_button" onClick={() => this.setState({ isOpen: !isOpen })}>
@@ -28,8 +29,8 @@ class DropDownMenu extends React.Component {
                 {isOpen && (
                     <div className="dropdown_list">
                         {listItems.map(item => (
-                            <div key={item} className="dropdown_listitem">
-                                <CheckItem name={item} />
+                            <div key={item.id} className="dropdown_listitem">
+                                <CheckItem item={item} />
                             </div>
                         ))}
                     </div>

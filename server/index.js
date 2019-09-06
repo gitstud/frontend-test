@@ -19,7 +19,7 @@ const port = 9081
 let custPath = path.join(__dirname, '../');
 app.get('/', (req, res) => res.sendFile(custPath + "/index.html"))
 
-app.get('/maxwell', jsonParser, async (req, res) => {
+app.post('/maxwell', jsonParser, async (req, res) => {
     const {
         category = "chinese",
         offset = 0,
@@ -40,7 +40,7 @@ app.get('/maxwell', jsonParser, async (req, res) => {
           data: query
         });
         console.log(result.data.data);
-        res.status(200).send({ success: true, data: result.data.data });
+        res.status(200).send({ success: true, search: result.data.data.search });
     } catch (err) {
         console.log(err);
         res.status(202).send({ success: false, message: err });

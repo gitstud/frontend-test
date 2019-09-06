@@ -4,19 +4,15 @@ import { bindActionCreators } from 'redux';
 import { checkItem } from '../actions';
 
 const CheckItem = (props) => {
-    // use react hooks to handle functional component state
-    const { name = '', filters, _checkItem } = props;
-    const toggle = () => {
-        _checkItem(name);
-    }
+    const { item = {}, filters, _checkItem } = props;
 
     return (
-        <div className="check_container" onClick={toggle}>
-            <div className="radioButton">
-                {!!filters[name] && <div className="checked" />}
-            </div>
-            <span className="isOpen_text">{name}</span>
+      <div className="check_container" onClick={() => _checkItem(item)}>
+        <div className="radioButton">
+          {!!filters[item.id] && <div className="checked" />}
         </div>
+        <span className="isOpen_text">{item.name}</span>
+      </div>
     );
 }
 

@@ -1,5 +1,5 @@
 const createListingQuery = ({
-  category = "",
+  category = "italian, seafood, steak, japanese, tradamerican, mexican, thai",
   offset = 0,
   openNow = false,
   price = "1, 2, 3, 4"
@@ -15,6 +15,7 @@ const createListingQuery = ({
             business {
                 id
                 name
+                price
                 id
                 alias
                 rating

@@ -4,25 +4,7 @@ import { bindActionCreators } from 'redux';
 import CheckItem from './CheckItem';
 import Dropdown from './Dropdown';
 import { clearFilters } from '../actions';
-
-const priceOptions = [
-    'All',
-    '$',
-    '$$',
-    '$$$',
-    '$$$$',
-];
-
-const categories = [
-    'All',
-    'Italian',
-    'Seafood',
-    'Steakhouses',
-    'Japanese',
-    'American',
-    'Mexican',
-    'Thai'
-];
+import { priceOptions, categories, openNow } from '../constants';
 
 class Filter extends React.Component {
     state = {
@@ -37,7 +19,7 @@ class Filter extends React.Component {
             <div className="filter_controls">
               <span className="filter_text">Filter By:</span>
               <div className="filter_isOpen">
-                <CheckItem name="Open Now" />
+                <CheckItem item={openNow} />
               </div>
               <div className="price_dropdown">
                 <Dropdown menuTitle="Price" listItems={priceOptions} />

@@ -12,11 +12,7 @@ const initialState = {
 const rootReducer = (state = initialState, action) => produce(state, draft => {
     switch (action.type) {
         case CHECK_ITEM:
-            if (draft.filters[action.payload]) {
-                draft.filters[action.payload] = false;
-            } else {
-                draft.filters[action.payload] = true;
-            }
+            draft.filters = action.payload;
             break;
         case CLEAR_FILTERS:
             draft.filters = {};
