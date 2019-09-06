@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "npm-run-all -p -r devStart server",
+    "start": "npm-run-all -p -r prodStart server",
+    "prodStart": "webpack --mode production",
     "devStart": "webpack --mode development",
     "server": "node ./server/index.js"
   },
