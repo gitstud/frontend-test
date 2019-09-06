@@ -1,7 +1,15 @@
+// variables
+$font-stack: Helvetica, sans-serif;
+$white: #ffffff;
+$border: #E6E6E6;
+$darkBlue: #002B56;
+$lightBlue: #1A84EF;
+$lightGrey: #606060;
+
 body {
     padding: 0;
     margin: 0;
-    background-color: #ffffff;
+    background-color: $white;
 }
 
 .container {
@@ -28,8 +36,8 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid #E6E6E6;
-    border-bottom: 1px solid #E6E6E6;
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
 }
 
 .filter_controls {
@@ -56,16 +64,16 @@ body {
 }
 
 .clearbutton_text {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #002B56;
+    font-family: $font-stack;
+    color: $darkBlue;
     font-size: 12px;
 }
 
 .filter_text {
     margin-right: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-stack;
     font-size: 16px;
-    color: #606060;
+    color: $lightGrey;
 }
 
 .filter_isOpen {
@@ -88,9 +96,9 @@ body {
 }
 
 .isOpen_text {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-stack;
     font-size: 16px;
-    color: #002B56;
+    color: $darkBlue;
 }
 
 .radioButton {
@@ -109,7 +117,7 @@ body {
         right: 2px;
         bottom: 2px;
         left: 2px;
-        background-color: #002B56;
+        background-color: $darkBlue;
         border-radius: 50%;
         // height: 12px;
         // width: 12px;
@@ -117,12 +125,12 @@ body {
 }
 
 .filter_isOpen:hover {
-    border-bottom: 1px solid#1A84EF;
+    border-bottom: 1px solid$lightBlue;
     .isOpen_text {
-        color: #1A84EF;
+        color: $lightBlue;
     }
     .radioButton {
-        border: 1px solid #1A84EF;
+        border: 1px solid $lightBlue;
     }
     .checked {
         position: absolute;
@@ -130,7 +138,7 @@ body {
         right: 2px;
         bottom: 2px;
         left: 2px;
-        background-color: #1A84EF;
+        background-color: $lightBlue;
         border-radius: 50%;
         // height: 12px;
         // width: 12px;
@@ -193,7 +201,7 @@ body {
     text-decoration: none;
     width: 100%;
     border: 1px solid grey;
-    background-color: #ffffff;
+    background-color: $white;
 }
 
 .dropdown_listitem {
@@ -203,12 +211,12 @@ body {
 }
 
 .price_dropdown:hover {
-    border-bottom: 1px solid#1A84EF;
+    border-bottom: 1px solid$lightBlue;
     .isOpen_text {
-        color: #1A84EF;
+        color: $lightBlue;
     }
     .radioButton {
-        border: 1px solid #1A84EF;
+        border: 1px solid $lightBlue;
     }
     .checked {
         position: absolute;
@@ -216,7 +224,7 @@ body {
         right: 2px;
         bottom: 2px;
         left: 2px;
-        background-color: #1A84EF;
+        background-color: $lightBlue;
         border-radius: 50%;
         // height: 12px;
         // width: 12px;
@@ -224,12 +232,12 @@ body {
 }
 
 .category_dropdown:hover {
-    border-bottom: 1px solid#1A84EF;
+    border-bottom: 1px solid $lightBlue;
     .isOpen_text {
-        color: #1A84EF;
+        color: $lightBlue;
     }
     .radioButton {
-        border: 1px solid #1A84EF;
+        border: 1px solid $lightBlue;
     }
     .checked {
         position: absolute;
@@ -237,7 +245,7 @@ body {
         right: 2px;
         bottom: 2px;
         left: 2px;
-        background-color: #1A84EF;
+        background-color: $lightBlue;
         border-radius: 50%;
         // height: 12px;
         // width: 12px;
@@ -286,7 +294,7 @@ body {
     font-weight: 300;
     font-size: 54px;
     color: #333333;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-stack;
     padding: '15px 0px';
     display: block;
     padding-bottom: 30px;
@@ -296,14 +304,14 @@ body {
     font-weight: 300;
     font-size: 34px;
     color: #333333;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-stack;
     display: block;
   }
 .branded_h3 {
     font-weight: 300;
     font-size: 24px;
     color: #333333;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-stack;
     display: block;
     line-height: 30px;
     padding: 10px 0px 5px;
@@ -313,13 +321,13 @@ body {
     color: #666666;
     font-size: 22px;
     font-weight: lighter;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-stack;
     line-height: 25px;
     display: block;
   }
 
   .star_rating {
-      color: #002B56;
+      color: $darkBlue;
       font-size: 20px;
   }
 
@@ -359,10 +367,11 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #002B56;
+      background-color: $darkBlue;
   }
 
   .learnMore_text {
-      color: #FFFFFF;
+      color: $white;
       font-size: 14px;
+      font-family: $font-stack;
   }

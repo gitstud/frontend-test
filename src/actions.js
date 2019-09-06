@@ -34,7 +34,7 @@ const makeQuery = filters =>
 
 export const checkItem = (item) => async (dispatch, getState) => {
     // get filters object from state
-    const { filters } = getState();
+    const { filters } = getState().app;
     // create new filters object with immer
     const newFilters = produce(filters, draft => {
         // if item id exists in filters then remove it
@@ -50,16 +50,17 @@ export const checkItem = (item) => async (dispatch, getState) => {
       type: CHECK_ITEM,
       payload: newFilters
     });
+
     const queryParts = makeQuery(newFilters);
-    console.log(queryParts);
+
     const { data: { search } } = await Axios.post(
       "http://localhost:9081/listings",
       makeQuery(newFilters)
     ).catch(err => console.log(err));
-    console.log(search);
+
     dispatch({
       type: UPDATE_RESULTS,
-      payload: search.business,
+      payload: search.business || [],
     });
 };
 
@@ -80,7 +81,7 @@ export const clearFilters = () => async (dispatch) => {
       await localStorage.setItem("listings", JSON.stringify(search.business));
       dispatch({
         type: UPDATE_RESULTS,
-        payload: search.business
+        payload: search.business || []
       });
     }
 };
@@ -101,7 +102,7 @@ export const getInitialListings = async ({ dispatch }) => {
     await localStorage.setItem('listings', JSON.stringify(search.business));
     dispatch({
       type: UPDATE_RESULTS,
-      payload: search.business
+      payload: search.business || []
     });
   }
 }

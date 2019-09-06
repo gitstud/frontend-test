@@ -1,35 +1,33 @@
-import { createStore, applyMiddleware } from 'redux';
-// using thunk to handle async actions
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { connectRoutes } from 'redux-first-router';
 import thunk from 'redux-thunk';
-import produce from 'immer';
-import { CHECK_ITEM, CLEAR_FILTERS, UPDATE_RESULTS, getInitialListings } from "./actions";
 
-const initialState = {
-  listings: [],
-  filters: {},
-  query: {},
-  limit: 8,
+import { getInitialListings } from './actions';
+
+import page from './reducers/pageReducer';
+import app from './reducers/appReducer';
+
+// map actions to urls
+const routesMap = {
+    HOME: '/',
+    LISTING: '/listing/:id'
 };
 
-const rootReducer = (state = initialState, action) => produce(state, draft => {
-    switch (action.type) {
-        case CHECK_ITEM:
-            draft.filters = action.payload;
-            break;
-        case CLEAR_FILTERS:
-            draft.filters = {};
-            break;
-        case UPDATE_RESULTS:
-            console.log(action.payload);
-            draft.listings = action.payload;
-            break;
-    }
+const { reducer: location, middleware, enhancer } = connectRoutes(routesMap);
+
+const rootReducer = combineReducers({
+    app,
+    page,
+    location,
 });
+
+// combine routes middleware and thunk
+const middlewares = applyMiddleware(middleware, thunk)
 
 const store =  createStore(
     rootReducer,
-    initialState,
-    applyMiddleware(thunk)
+    {},
+    compose(enhancer, middlewares),
 );
 
 getInitialListings(store);

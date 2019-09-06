@@ -12,6 +12,6 @@ const Grid = ({ listings, limit }) => (
     </div>
 );
 
-const mapStateToProps = ({ listings, limit }) => ({ listings, limit });
+const mapStateToProps = ({ app: { listings, limit } }) => ({ listings, limit });
 
 export default connect(mapStateToProps)(Grid);

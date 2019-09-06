@@ -17,7 +17,7 @@ const CheckItem = (props) => {
 }
 
 
-const mapStateToProps = ({ filters }) => ({
+const mapStateToProps = ({ app: { filters } }) => ({
   filters,
 });
 

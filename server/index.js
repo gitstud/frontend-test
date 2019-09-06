@@ -20,7 +20,13 @@ const jsonParser = bodyParser.json();
 const port = 9081
 
 let custPath = path.join(__dirname, '../');
-app.get('/', (req, res) => res.sendFile(custPath + "/index.html"))
+app.get('/*', (req, res, next) => {
+  console.log(req.url);
+  if (req.url === '/listings' || req.url.includes('static')) {
+    return next();
+  }
+  return res.sendFile(custPath + "/index.html");
+});
 
 app.post('/listings', jsonParser, async (req, res) => {
     const query = createListingQuery(req.body);
@@ -40,10 +46,6 @@ app.post('/listings', jsonParser, async (req, res) => {
         console.log(err);
         res.status(202).send({ success: false, message: err });
     }
-});
-
-app.get('/listing/:id', async (req, res) => {
-  res.status(200).send({ success: true });
 });
 
 
