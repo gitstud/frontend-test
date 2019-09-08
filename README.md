@@ -1,8 +1,10 @@
 # UP & RUNNING
 1. clone && cd into repo
 2. yarn && cd server && yarn && cd ..
-3. yarn dev
-4. localhost:9081
+3. touch .env
+4. add YELP_API_KEY=your_key to .env file
+5. yarn dev
+6. localhost:9081
 
 [Preview](https://gentle-gorge-18432.herokuapp.com/)
 
