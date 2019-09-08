@@ -2,34 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import BrandedText from './BrandedText';
 
+import { makeStars } from '../utilities';
+
 class Listing extends React.PureComponent {
-    makeStars = (rating) => {
-      const stars = [];
-      let i;
-      for (i = 1; i <= rating; i += 1) {
-        stars.push(<ion-icon key={`fill${i}`} name="star"></ion-icon>);
-      }
-
-      if (i - rating === 0.5) {
-        stars.push(<ion-icon key="half" name="star-half"></ion-icon>);
-        for (i; i < 5; i += 1) {
-          stars.push(<ion-icon key={`outline${i}`} name="star-outline"></ion-icon>);
-        }
-      } else {
-        for (i; i <= 5; i += 1) {
-          stars.push(
-            <ion-icon key={`outline${i}`} name="star-outline"></ion-icon>
-          );
-        }
-      }
-      return stars;
-    }
-
     render() {
         const { listing, index, _navigate } = this.props;
         return (
           <div
-            onClick={() => _navigate(listing.id)}
+            onClick={() => _navigate(listing)}
             className="listing_details"
             style={{
               animation: `fadein ${index * 0.7 + 1}s`
@@ -48,7 +28,7 @@ class Listing extends React.PureComponent {
               ></div>
               <BrandedText type="h3">{listing.name}</BrandedText>
               <span className="star_rating">
-                {this.makeStars(listing.rating)}
+                {makeStars(listing.rating)}
               </span>
               <div className="listing_isOpen-container">
                 <span className="listing_price">
@@ -78,7 +58,10 @@ class Listing extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  _navigate: (id) => dispatch({ type: 'LISTING', payload: { id } }),
+  _navigate: (listing) => {
+    localStorage.setItem('single', JSON.stringify(listing));
+    dispatch({ type: 'LISTING', payload: { id: listing.id } });
+  },
 });
 
 export default connect(null, mapDispatchToProps)(Listing);

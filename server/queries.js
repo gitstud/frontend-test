@@ -19,6 +19,23 @@ const createListingQuery = ({
                 price
                 rating
                 photos
+                location {
+                    formatted_address
+                }
+                coordinates {
+                    longitude
+                    latitude
+                }
+                reviews {
+                    id
+                    text
+                    rating
+                    time_created
+                    user {
+                        name
+                        image_url
+                    }
+                }
                 categories {
                     title
                 }
