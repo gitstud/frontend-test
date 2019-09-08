@@ -6,7 +6,7 @@ import { makeStars, formatDate } from "../utilities";
 
 const MyMapComponent = withScriptjs(withGoogleMap(({ coords }) =>
   <GoogleMap
-    defaultZoom={20}
+    defaultZoom={15}
   defaultCenter={coords}
   >
     <Marker position={coords} />
@@ -40,28 +40,34 @@ const Listing = ({
         </span>
       </div>
     </div>
-    <div className="map_container">
-      <MyMapComponent
-        isMarkerShown
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCRHzhtZdje4hNi1HqFtB_s92JKZz0CP48"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `200px`, width: "600px" }} />}
-        mapElement={<div style={{ height: `200px`, width: "600px" }} />}
-        coords={{ lng, lat }}
-      />
-      <div
-        className="listing_image-container"
-        style={{
-          backgroundImage: `url(${listing.photos[0]})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          height: "228px",
-          width: "100%"
-        }}
-      ></div>
+    <div className="map_section">
+      <div className="map_container">
+        <MyMapComponent
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCRHzhtZdje4hNi1HqFtB_s92JKZz0CP48"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `200px`, width: "600px" }} />}
+          mapElement={<div style={{ height: `200px`, width: "600px" }} />}
+          coords={{ lng, lat }}
+        />
+        <div
+          className="listing_image-container"
+          style={{
+            backgroundImage: `url(${listing.photos[0]})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            height: "200px",
+            width: "100%"
+          }}
+        ></div>
+      </div>
+      <div className="listing_address">
+        <span>{listing.location.formatted_address}</span>
+      </div>
     </div>
-    <span className="listing_price">{listing.location.formatted_address}</span>
-    <span className="listing_price">{listing.review_count}</span>
+    <div className="review_count">
+      <span className="listing_price">{`${listing.review_count} Reviews`}</span>
+    </div>
     <div className="reviews_container">
       {listing.reviews.map(review => (
         <div className="review_container" key={review.id}>
