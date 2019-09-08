@@ -1,3 +1,25 @@
+# UP & RUNNING
+1. clone && cd into repo
+2. yarn && cd server && yarn && cd ..
+3. yarn dev
+4. localhost:9081
+
+[Preview](https://gentle-gorge-18432.herokuapp.com/)
+
+## STACK
+
+react, redux-first-router, webpack, babel, sass, redux
+
+## NOTES
+
+CSS could be tighter.
+could change page title with redux-first-router.
+could cache filtered results on server for faster load speeds.
+price and open now filters could happen client side (and should have per instructions) + filtering would have been easier this way.
+API Keys should have been setup in .env first thing.
+could have used redux-persist to cache results client side instead of direct calls to local storage.
+could have probably used a graphql client on the server instead of interfacing with the graphql endpoint through https.
+
 # Superformula Front-end Developer Coding Test
 
 Be sure to read **all** of this document carefully, and follow the guidelines within.

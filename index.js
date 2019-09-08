@@ -5,8 +5,6 @@ import App from './src/App';
 import store from './src/store';
 import "./src/sass/main.scss"
 
-import Header from './src/components/Header';
-
 render(
     <Provider store={store}>
         <App />
